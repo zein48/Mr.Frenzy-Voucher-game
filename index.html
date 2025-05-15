@@ -1,0 +1,22 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Voucher Game</title>
+</head>
+<body>
+    <h1>Daftar Voucher</h1>
+    {% for voucher in vouchers %}
+        <div>
+            <h2>{{ voucher.nama_game }}</h2>
+            <p>Nominal: {{ voucher.nominal }}</p>
+            <p>Harga: Rp {{ voucher.harga }}</p>
+            {% if session.user_id %}
+                <a href="{{ url_for('order', voucher_id=voucher.id) }}">Order</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">Login untuk order</a>
+            {% endif %}
+        </div>
+    {% endfor %}
+</body>
+</html>
